@@ -2,7 +2,7 @@
 const http=require('http'),fs=require('fs'),path=require('path'),crypto=require('crypto');
 const PORT=process.env.PORT||3000;
 const OWNER=(process.env.OWNER_NAME||'yuoop31').toLowerCase();
-const DATA_DIR=process.env.DATA_DIR||path.join(__dirname,'data');
+const DATA_DIR=process.env.DATA_DIR||process.env.RAILWAY_VOLUME_MOUNT_PATH||path.join(__dirname,'data'); // Railway sets RAILWAY_VOLUME_MOUNT_PATH automatically when a volume is attached
 const DB_FILE=path.join(DATA_DIR,'users.json');
 fs.mkdirSync(DATA_DIR,{recursive:true});
 let db={users:{},sessions:{}};
